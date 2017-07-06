@@ -12,6 +12,10 @@
     <string name="action_login_error">Bad credentials</string>
     <string name="front_date_time">Today is %1$s %2$s.</string>
     <string name="front_average_count">Average click : %1$,.2f in %2$d seconds</string>
+    <string name="front_total_click">Total clicks : %1$d</string>
     <string name="title_activity_sensor">SensorActivity</string>
     <string name="title_sensors">Sensors</string>
+    <string name="front_dark_light">It\' s dark here…</string>
+    <string name="front_average_light">Nice ambient light !</string>
+    <string name="front_high_light">Too much light ! I\'m glad I\'m not a vampire</string>
 </resources>

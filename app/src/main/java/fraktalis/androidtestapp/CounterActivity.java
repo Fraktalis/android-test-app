@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -36,13 +37,16 @@ public class CounterActivity extends AppCompatActivity {
         TextView greetingsDisplay = (TextView) findViewById(R.id.greetings);
 
         TextView average = (TextView) findViewById(R.id.average_click);
+        TextView total = (TextView) findViewById(R.id.total_click);
         Button clicker = (Button) findViewById(R.id.clicker);
         ProgressBar bar = (ProgressBar) findViewById(R.id.click_progress);
         bar.setMax(1000);
         clicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                counter.addValue(1f);
                 updateCounter(counter, average);
+                updateTotal(counter, total);
             }
         });
 
@@ -58,11 +62,11 @@ public class CounterActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Date noteTS = Calendar.getInstance().getTime();
-
                                 String time = DateFormat.format("hh:mm:ss", noteTS).toString();
                                 String date = DateFormat.format("dd MMMMM yyyy", noteTS).toString();
                                 dateDisplay.setText(getString(R.string.front_date_time, date, time));
                                 double averageClick = updateCounter(counter, average);
+                                updateTotal(counter, total);
                                 updateProgressBar(averageClick, bar);
                             }
                         });
@@ -92,8 +96,11 @@ public class CounterActivity extends AppCompatActivity {
         });
     }
 
+    private void updateTotal(Counter counter, TextView total) {
+        total.setText(getString(R.string.front_total_click, (int)counter.getValue()));
+    }
+
     public double updateCounter(Counter counter, TextView counterView) {
-        counter.addValue(1f);
         long elapsed = (System.currentTimeMillis() - startTime) / 1000;
         double averageClick = counter.getValue() / elapsed;
         counterView.setText(getString(R.string.front_average_count, averageClick, elapsed));
@@ -102,6 +109,6 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     public void updateProgressBar(double averageClick, ProgressBar bar) {
-        bar.setProgress(100*(int)averageClick);
+        bar.setProgress((int)(100*averageClick));
     }
 }
