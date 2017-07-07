@@ -58,6 +58,15 @@ public class StarterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        final Button gravityButton = (Button) findViewById(R.id.gravity);
+        gravityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StarterActivity.this, GravityActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

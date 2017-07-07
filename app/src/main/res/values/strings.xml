@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">AndroidTestApp</string>
     <string name="action_settings">Settings</string>
+    <string name="action_sensors">Sensors</string>
     <string name="action_login">Login</string>
     <string name="form_password">Password</string>
     <string name="form_name">Name</string>
     <string name="title_activity_counter">CounterActivity</string>
     <string name="title_home">Home</string>
+    <string name="title_counter">Counter</string>
+    <string name="title_gravity">Gravity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="front_greetings">Hello %1$s! Your password is %2$s.</string>
@@ -18,4 +21,7 @@
     <string name="front_dark_light">It\' s dark here…</string>
     <string name="front_average_light">Nice ambient light !</string>
     <string name="front_high_light">Too much light ! I\'m glad I\'m not a vampire</string>
+    <string name="front_acceleration">Acceleration : x = %1$,.2f m/s², y = %2$,.2f m/s², z = %3$,.2f m/s²</string>
+    <string name="front_speed">Speed : x = %1$,.2f m/s, y = %2$,.2f m/s², z = %3$,.2f m/s²</string>
+    <string name="front_position">Relative position : x = %1$,.2f m, y = %2$,.2f m, z = %3$,.2f m</string>
 </resources>

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,11 +32,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private Vibrator vibrator;
     private int lightState = AVERAGE;
     private static final String ACTIVITY_NAME = "SensorActivity";
+    private WindowManager.LayoutParams params;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
+        params = this.getWindow().getAttributes();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -101,14 +104,21 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 case DARK:
                     Toast.makeText(SensorActivity.this, R.string.front_dark_light,
                             Toast.LENGTH_SHORT).show();
+                    params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    params.screenBrightness = 0f;
+                    this.getWindow().setAttributes(params);
                     break;
                 case AVERAGE: Toast.makeText(SensorActivity.this, R.string.front_average_light,
                         Toast.LENGTH_SHORT).show();
+                    params.screenBrightness = 0.5f;
+                    this.getWindow().setAttributes(params);
                     break;
                 case HIGH:
                     Toast.makeText(SensorActivity.this, R.string.front_high_light,
                             Toast.LENGTH_SHORT).show();
                     vibrator.vibrate(500);
+                    params.screenBrightness = 1f;
+                    this.getWindow().setAttributes(params);
                     break;
                 default:
                     Log.v("test", "test");
